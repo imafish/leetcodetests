@@ -28,6 +28,6 @@ func TestLengthOfLongestSubstringWithIssue(t *testing.T) {
 	result := lengthOfLongestSubstring("tmmzuxt")
 
 	if result != 5 {
-		t.Errorf("Expected 5, got %d", result)
+		t.Errorf("Expected 5, got %d.\n", result)
 	}
 }
