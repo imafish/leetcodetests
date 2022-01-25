@@ -31,7 +31,7 @@
 ```
 */
 
-package main
+package leetcodetests
 
 func containsNearbyDuplicate(nums []int, k int) bool {
 	data := make(map[int]int, len(nums))

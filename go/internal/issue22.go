@@ -20,7 +20,7 @@
 ```
 */
 
-package main
+package leetcodetests
 
 import "strings"
 

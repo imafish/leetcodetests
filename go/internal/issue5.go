@@ -1,4 +1,4 @@
-package main
+package leetcodetests
 
 func longestPalindrome(s string) string {
 	strlen := len(s)
