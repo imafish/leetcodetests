@@ -1,6 +1,10 @@
 package leetcodetests
 
-import "testing"
+import (
+	"fmt"
+	"strings"
+	"testing"
+)
 
 type testcase1765 struct {
 	Data     [][]int
@@ -19,7 +23,7 @@ func TestIssue1765(t *testing.T) {
 		},
 		{
 			Data:     [][]int{{0, 0, 0, 0, 0, 0, 1, 0}, {0, 1, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 0}, {0, 0, 1, 0, 0, 0, 0, 0}},
-			Expected: 5,
+			Expected: 4,
 		},
 	}
 
@@ -57,9 +61,9 @@ func analysis(t *testing.T, index int, tc testcase1765, result [][]int) {
 	if len(invalidBlocks) > 0 || max != tc.Expected {
 		t.Errorf("Found error in testcase #%d, printing input and output.\n", index)
 
-		t.Log("-------INPUT -------\n")
+		t.Log("-------INPUT -------")
 		printData(t, tc.Data)
-		t.Log("-------RESULT-------\n")
+		t.Log("-------RESULT-------")
 		printData(t, result)
 
 		if max != tc.Expected {
@@ -78,9 +82,11 @@ func analysis(t *testing.T, index int, tc testcase1765, result [][]int) {
 
 func printData(t *testing.T, data [][]int) {
 	for _, row := range data {
+		strBuilder := new(strings.Builder)
 		for _, v := range row {
-			t.Logf("%d ", v)
+			strBuilder.WriteString(fmt.Sprintf("%d ", v))
 		}
-		t.Logf("\n")
+		strBuilder.WriteRune('\n')
+		t.Logf(strBuilder.String())
 	}
 }
