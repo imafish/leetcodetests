@@ -1,9 +1,8 @@
 #include <vector>
-#include "solution.h"
 
 using namespace std;
 
-class Solution2029 : public Solution
+class Solution2029
 {
 public:
     bool stoneGameIX(vector<int> &stones)

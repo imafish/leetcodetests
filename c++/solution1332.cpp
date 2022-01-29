@@ -1,15 +1,9 @@
 #include <string>
-#include "solution.h"
 using namespace std;
 
-class Solution1332 : public Solution
+class Solution1332
 {
 public:
-    virtual bool run() override
-    {
-        return true;
-    }
-
     int removePalindromeSub(string s)
     {
         int len = s.length();

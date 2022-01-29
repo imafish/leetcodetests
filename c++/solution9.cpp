@@ -1,6 +1,4 @@
-#include "solution.h"
-
-class Solution9 : public Solution
+class Solution9
 {
 public:
     bool isPalindrome(int x)

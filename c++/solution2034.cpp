@@ -2,8 +2,6 @@
 #include <map>
 #include <iostream>
 
-#include "solution.h"
-
 class StockPrice
 {
 public:

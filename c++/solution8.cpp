@@ -1,9 +1,8 @@
-#include <iostream>
-#include "solution.h"
+#include "afx.h"
 
 using namespace std;
 
-class Solution8 : public Solution
+class Solution8
 {
 public:
     int myAtoi(std::string s)
@@ -18,11 +17,6 @@ public:
         ProcessNumbers(begin, end, state);
 
         return state.currentValue;
-    }
-
-    bool run() override
-    {
-        return myAtoi("42") == 42;
     }
 
 private:
@@ -108,5 +102,18 @@ private:
 int main()
 {
     Solution8 s;
-    std::cout << s.run() << std::endl;
+    std::string str = "42";
+    int expected = 42;
+    int actual = s.myAtoi(str);
+
+    if (actual == expected)
+    {
+        std::cout << "SUCCESS";
+    }
+    else
+    {
+        std::cout << "FAIL: expected : " << expected
+                  << ", actual: " << actual;
+    }
+    std::cout << std::endl;
 }

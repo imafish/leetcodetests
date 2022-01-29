@@ -1,14 +1,8 @@
-#include <string>
-#include <vector>
-#include <deque>
-#include <list>
-#include <assert.h>
-
-#include "solution.h"
+#include "afx.h"
 
 using namespace std;
 
-class Solution10 : public Solution
+class Solution10
 {
 public:
     bool isMatch(string s, string p)
@@ -194,45 +188,41 @@ private:
 
         return tokens;
     }
+};
 
-public:
-    struct TestCase
-    {
-        TestCase(const string &s, const string &p, bool e) : str(s), pattern(p), expected(e) {}
-        string str;
-        string pattern;
-        bool expected;
-    };
-
-    virtual bool run() override
-    {
-        list<TestCase> testcases{
-            {"a", "ab*", true},
-            {"mississippi", "mis*is*p*.", false},
-            {"aa", "a", false},
-            {"aa", "a*", true},
-            {"ab", ".*", true},
-            {"aab", "c*a*b", true}};
-
-        bool good = true;
-        for (auto &tc : testcases)
-        {
-            bool actual = isMatch(tc.str, tc.pattern);
-            printf("%s: `%s`, `%s`: expected: %d, actual: %d\n", actual == tc.expected ? "SUCCESS" : "FAIL   ", tc.str.c_str(), tc.pattern.c_str(), tc.expected, actual);
-            if (actual != tc.expected)
-            {
-                good = false;
-            }
-        }
-
-        return good;
-    }
+struct TestCase10
+{
+    TestCase10(const string &s, const string &p, bool e) : str(s), pattern(p), expected(e) {}
+    string str;
+    string pattern;
+    bool expected;
 };
 
 int main()
 {
     Solution10 s;
-    s.run();
+
+    list<TestCase10> testcases{
+        {"a", "ab*", true},
+        {"mississippi", "mis*is*p*.", false},
+        {"aa", "a", false},
+        {"aa", "a*", true},
+        {"ab", ".*", true},
+        {"aab", "c*a*b", true}};
+
+    bool good = true;
+    for (auto &tc : testcases)
+    {
+        bool actual = s.isMatch(tc.str, tc.pattern);
+        printf("%s: `%s`, `%s`: expected: %d, actual: %d\n", actual == tc.expected ? "SUCCESS" : "FAIL   ", tc.str.c_str(), tc.pattern.c_str(), tc.expected, actual);
+        if (actual != tc.expected)
+        {
+            good = false;
+        }
+    }
+
+    std::cout << "-------" << std::endl
+              << (good ? "PASS!" : "FAIL...") << std::endl;
 
     return 0;
 }
