@@ -23,7 +23,7 @@ private:
     struct InternalState
     {
         bool isPositive;
-        int currentValue;
+        int64_t currentValue;
     };
 
     void RemoveLeadingCharacters(std::string::iterator &begin, std::string::iterator &end, InternalState &state)
@@ -66,33 +66,34 @@ private:
 
     void ProcessNumbers(std::string::iterator &begin, std::string::iterator &end, InternalState &state)
     {
-        int value = 0;
+        int64_t value = 0;
 
-        const int threshold = 0x7fffffff / 10;
-        int remainder = 0x7fffffff % 10;
-        if (!state.isPositive)
-        {
-            remainder = remainder + 1;
-        }
+        int64_t threshold = state.isPositive ? INT_MAX : (int64_t)INT_MAX + 1;
 
         while (begin != end)
         {
-            int newValue = *begin - 48;
+            value = value * 10 + *begin - 48;
 
-            // TODO move to separate function.
-            if (value > threshold || (value == threshold && newValue > remainder))
+            if (value > threshold)
             {
-                state.currentValue = state.isPositive ? 0x7fffffff : (int32_t)0x80000000;
-                return;
+                value = threshold;
+                break;
             }
 
-            value = value * 10 + (*begin - 48);
             begin++;
         }
 
         if (!state.isPositive)
         {
             value = -value;
+        }
+        if (value > INT_MAX)
+        {
+            value = INT_MAX;
+        }
+        else if (value < INT_MIN)
+        {
+            value = INT_MIN;
         }
 
         state.currentValue = value;
