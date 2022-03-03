@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <string.h>
+
 #include <list>
 #include <vector>
 #include <array>
@@ -15,3 +17,4 @@
 #include <unordered_set>
 #include <memory>
 #include <functional>
+#include <cmath>
