@@ -11,7 +11,7 @@ type DetectSquares struct {
 	data       map[Point]int
 }
 
-func Constructor() DetectSquares {
+func ConstructorIssue2013() DetectSquares {
 	return DetectSquares{
 		//		indexWithX: make(map[int]map[int]int),
 		indexWithY: make(map[int]map[int]int),

@@ -30,7 +30,7 @@ func TestIssue2013(t *testing.T) {
 
 	for ti, testcase := range testcases {
 
-		detectSquares := Constructor()
+		detectSquares := ConstructorIssue2013()
 		ds := &detectSquares
 
 		for i, a := range testcase.Action {
