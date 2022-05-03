@@ -1,13 +1,5 @@
 package leetcodetests
 
-/**
- * Definition for a Node.
- */
-type Node struct {
-	Val      int
-	Children []*Node
-}
-
 func postorder(root *Node) []int {
 	result := make([]int, 0)
 

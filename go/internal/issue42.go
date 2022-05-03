@@ -1,32 +1,36 @@
 package leetcodetests
 
 func trap(height []int) int {
-	water := 0
-	h := 0
 	length := len(height)
-	max := 0
-	for {
-		w := 0
-		start := false
-		starti := 0
-		for i := 0; i < length; i++ {
-			if h == 0 && height[i] > max {
-				max = height[i]
-			}
-			if height[i] > h {
-				if start {
-					w += i - starti - 1
-					starti = i
-				} else {
-					start = true
-					starti = i
-				}
-			}
+	leftMax, rightMax := make([]int, length), make([]int, length)
+
+	leftMax[0] = height[0]
+	for i := 1; i < length; i++ {
+		h := height[i]
+		if leftMax[i-1] > h {
+			leftMax[i] = leftMax[i-1]
+		} else {
+			leftMax[i] = h
 		}
-		water += w
-		if h >= max {
-			return water
-		}
-		h++
+
 	}
+
+	rightMax[length-1] = height[length-1]
+	for i := length - 2; i >= 0; i-- {
+		h := height[i]
+		if rightMax[i+1] > h {
+			rightMax[i] = rightMax[i+1]
+		} else {
+			rightMax[i] = h
+		}
+	}
+
+	water := 0
+	for i := 1; i < length-1; i++ {
+		w := min(leftMax[i], rightMax[i]) - height[i]
+		if w > 0 {
+			water += w
+		}
+	}
+	return water
 }
